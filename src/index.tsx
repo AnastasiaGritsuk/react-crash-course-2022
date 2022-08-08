@@ -4,16 +4,22 @@ import './index.css';
 import App from './App';
 import { ModalState } from "./context/ModelContext";
 import { BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux";
+import { setupStore } from "./store";
+
+const store = setupStore();
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
-  <BrowserRouter>
-    <ModalState>
-      <App />
-    </ModalState>
-  </BrowserRouter>
+  <Provider store={store}>
+    <BrowserRouter>
+      <ModalState>
+        <App />
+      </ModalState>
+    </BrowserRouter>
+  </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function

@@ -1,11 +1,10 @@
 import { IProduct } from "../models/products";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 interface ProductProps {
-  product: IProduct
+  product: IProduct;
 }
-
-
 
 export function Product({ product }: ProductProps) {
   const [details, setDetails] = useState(false);
@@ -13,8 +12,11 @@ export function Product({ product }: ProductProps) {
   const btnBhClassName = details ? 'bg-yellow-400' : 'bg-blue-400';
   const btnClasses = ['py-2 px-4 border', btnBhClassName];
 
+  const navigate = useNavigate();
+  const clickHandler = () => navigate(`product/${product.id}`)
+
   return (
-    <div className="border py-2 px-4 rounded flex flex-col items-center mb-2">
+    <div className="border py-2 px-4 rounded flex flex-col items-center mb-2" onClick={clickHandler}>
       <img src={product.image} className="w-1/6" alt={product.title}/>
       <p>{ product.title }</p>
       <span className="font-bold">{product.price}</span>
